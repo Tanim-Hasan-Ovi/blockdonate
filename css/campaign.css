@@ -1,0 +1,449 @@
+/* Campaigns Page Styles */
+.campaigns-header {
+    padding: 10px 0 5px;
+    background-color: var(--light);
+    margin-top: 80px;
+}
+
+.campaigns-header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 1), rgba(0, 206, 201, 1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+}
+
+
+.campaign-filters {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.campaign-filters select {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--gray);
+    background-color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.campaign-filters select:hover {
+    border-color: var(--primary);
+}
+
+.campaigns-list {
+    padding: 5px 0 80px;
+}
+
+.campaigns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.campaign-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.campaign-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.campaign-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.campaign-card:hover .campaign-image img {
+    transform: scale(1.05);
+}
+
+.campaign-content {
+    padding: 20px;
+}
+
+.campaign-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.campaign-description {
+    color: var(--dark-light);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.campaign-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.campaign-category {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.campaign-category.medical {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.campaign-category.education {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.campaign-category.emergency {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+}
+
+.campaign-deadline {
+    color: var(--dark-light);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Campaign Actions Styles */
+.campaign-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-donate {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-donate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn-donate:active {
+    transform: translateY(0);
+}
+
+.btn-donate i {
+    font-size: 1rem;
+}
+
+.campaign-progress {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: var(--gray);
+    border-radius: 4px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--dark-light);
+}
+
+/* Document & Voting Styles */
+.btn-view-document {
+    background: rgb(126, 138, 219);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-view-document:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.document-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    overflow-y: auto;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideDown 0.3s;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--dark-light);
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--dark);
+}
+
+.document-viewer {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px dashed var(--gray);
+    border-radius: 8px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voting-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray);
+}
+
+.voting-section h4 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--dark);
+    text-align: center;
+}
+
+.vote-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.vote-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.vote-real {
+    background: rgba(0, 184, 148, 0.1);
+    color: var(--success);
+    border: 2px solid var(--success);
+}
+
+.vote-real:hover {
+    background: var(--success);
+    color: white;
+}
+
+.vote-fake {
+    background: rgba(214, 48, 49, 0.1);
+    color: var(--error);
+    border: 2px solid var(--error);
+}
+
+.vote-fake:hover {
+    background: var(--error);
+    color: white;
+}
+
+.vote-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(108, 92, 231, 0.05);
+    border-radius: 6px;
+}
+
+.vote-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.real-votes {
+    color: var(--success);
+}
+
+.fake-votes {
+    color: var(--error);
+}
+
+/* Verification Badge */
+.verified-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--success);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 1;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { 
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .campaigns-header {
+        padding: 60px 0 20px;
+    }
+    
+    .campaign-filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .campaigns-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .vote-buttons {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn-donate {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .campaign-actions {
+        margin-top: 15px;
+    }
+    
+    .btn-donate {
+        padding: 8px 16px;
+    }
+}

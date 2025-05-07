@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BlockDonate - Decentralized Donation Platform</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/campaign.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" ><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="campaigns.html" class="active"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                        <li><button id="connect-wallet" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+                    </ul>
+                </nav>
+                
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars" id="menuIcon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+            <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
+            <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+            <li><button id="connect-wallet-mobile" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+        </ul>
+    </div>
+
+    <section class="campaigns-header">
+        <div class="container">
+            <h1>Active Campaigns</h1>
+            <div class="campaign-filters">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="medical">Medical</option>
+                    <option value="education">Education</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+                <select id="sort-by">
+                    <option value="newest">Newest First</option>
+                    <option value="ending">Ending Soon</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    
+    <section class="campaigns-list">
+        <div class="container">
+            <div class="campaigns-grid" id="all-campaigns">
+                <!-- Campaign 1 -->
+                <div class="campaign-card">
+                    <div class="campaign-image">
+                        <img src="images/cancer.jpg" alt="Campaign Image">
+                    </div>
+                    <div class="campaign-content">
+                        <h3 class="campaign-title">Help Sara's Medical Treatment</h3>
+                        <p class="campaign-description">Sara needs urgent surgery for a heart condition. Your support can save ...</p>
+    
+                        <div class="campaign-document">
+                            <button class="btn-view-document">
+                                <i class="fas fa-file-alt"></i> View Documents
+                            </button>
+                            <div class="document-modal">
+                                <div class="modal-content">
+                                    <span class="close-modal">&times;</span>
+                                    <h3>Campaign Verification Documents</h3>
+                                    <div class="document-viewer">
+                                        <p>Medical reports, ID verification, and other documents ...</p>
+                                    </div>
+                                    <div class="voting-section">
+                                        <h4>Is this campaign legitimate?</h4>
+                                        <div class="vote-buttons">
+                                            <button class="vote-btn vote-real">
+                                                <i class="fas fa-check-circle"></i> Real Campaign
+                                            </button>
+                                            <button class="vote-btn vote-fake">
+                                                <i class="fas fa-times-circle"></i> Fake Campaign
+                                            </button>
+                                        </div>
+                                        <div class="vote-stats">
+                                            <span class="real-votes"><i class="fas fa-check"></i> 85% Real</span>
+                                            <span class="fake-votes"><i class="fas fa-times"></i> 15% Fake</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="campaign-meta">
+                            <span class="campaign-category medical">Medical</span>
+                            <span class="campaign-deadline">5 days left</span>
+                        </div>
+    
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>3.2 ETH</span>
+                                <span>65% funded</span>
+                            </div>
+                        </div>
+    
+                        <div class="campaign-actions">
+                            <button class="btn-donate">Donate Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign 2 - Education -->
+                <div class="campaign-card">
+                    <div class="campaign-image">
+                        <img src="images/school.jpg" alt="School Supplies">
+                    </div>
+                    <div class="campaign-content">
+                        <h3 class="campaign-title">School Supplies for Village Kids</h3>
+                        <p class="campaign-description">Providing books and supplies to underprivileged children in rural areas ...</p>
+    
+                        <div class="campaign-document">
+                            <button class="btn-view-document">
+                                <i class="fas fa-file-alt"></i> View Documents
+                            </button>
+                            <div class="document-modal">
+                                <div class="modal-content">
+                                    <span class="close-modal">&times;</span>
+                                    <h3>Campaign Verification Documents</h3>
+                                    <div class="document-viewer">
+                                        <p>School proposal, budget breakdown, and partner organization details...</p>
+                                    </div>
+                                    <div class="voting-section">
+                                        <h4>Is this campaign legitimate?</h4>
+                                        <div class="vote-buttons">
+                                            <button class="vote-btn vote-real">
+                                                <i class="fas fa-check-circle"></i> Real Campaign
+                                            </button>
+                                            <button class="vote-btn vote-fake">
+                                                <i class="fas fa-times-circle"></i> Fake Campaign
+                                            </button>
+                                        </div>
+                                        <div class="vote-stats">
+                                            <span class="real-votes"><i class="fas fa-check"></i> 92% Real</span>
+                                            <span class="fake-votes"><i class="fas fa-times"></i> 8% Fake</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="campaign-meta">
+                            <span class="campaign-category education">Education</span>
+                            <span class="campaign-deadline">12 days left</span>
+                        </div>
+    
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>0.9 ETH</span>
+                                <span>45% funded</span>
+                            </div>
+                        </div>
+    
+                        <div class="campaign-actions">
+                            <button class="btn-donate">Donate Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign 3 - Emergency -->
+                <div class="campaign-card">
+                    <div class="campaign-image">
+                        <img src="images/flood.jpg" alt="Flood Relief">
+                    </div>
+                    <div class="campaign-content">
+                        <h3 class="campaign-title">Disaster Relief for Flood Victims</h3>
+                        <p class="campaign-description">Emergency funds for families affected by recent floods in the region...</p>
+    
+                        <div class="campaign-document">
+                            <button class="btn-view-document">
+                                <i class="fas fa-file-alt"></i> View Documents
+                            </button>
+                            <div class="document-modal">
+                                <div class="modal-content">
+                                    <span class="close-modal">&times;</span>
+                                    <h3>Campaign Verification Documents</h3>
+                                    <div class="document-viewer">
+                                        <p>Disaster reports, government verification, and relief organization partnership...</p>
+                                    </div>
+                                    <div class="voting-section">
+                                        <h4>Is this campaign legitimate?</h4>
+                                        <div class="vote-buttons">
+                                            <button class="vote-btn vote-real">
+                                                <i class="fas fa-check-circle"></i> Real Campaign
+                                            </button>
+                                            <button class="vote-btn vote-fake">
+                                                <i class="fas fa-times-circle"></i> Fake Campaign
+                                            </button>
+                                        </div>
+                                        <div class="vote-stats">
+                                            <span class="real-votes"><i class="fas fa-check"></i> 78% Real</span>
+                                            <span class="fake-votes"><i class="fas fa-times"></i> 22% Fake</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="campaign-meta">
+                            <span class="campaign-category emergency">Emergency</span>
+                            <span class="campaign-deadline">3 days left</span>
+                        </div>
+    
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 82%"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>8.2 ETH</span>
+                                <span>82% funded</span>
+                            </div>
+                        </div>
+    
+                        <div class="campaign-actions">
+                            <button class="btn-donate">Donate Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1 of 5</span>
+                <button id="next-page">Next</button>
+            </div>
+        </div>
+    </section>
+    
+    <link rel="stylesheet" href="css/campaign.css">
+    <script src="js/campaign.js"></script>
+    
+
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-donate"></i>
+                        <span>BlockDonate</span>
+                    </div>
+                    <br>
+                    <p>Transparent giving powered by blockchain technology.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="campaigns.html">Campaigns</a></li>
+                        <li><a href="create-campaign.html">Start Campaign</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1FRMzVBqx2/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@uitsofficial"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/university-of-information-technology-and-sciences-uits-b669b1192/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/uits_uits.edu.bd/?fbclid=IwY2xjawJ4P8JleHRuA2FlbQIxMABicmlkETFSQ0xwNE9iUGNTMnlQekFJAR5P3NW8ZcXNLptk0SSwd81QtbtYuj-eEzbz4vnlW6WK65p3n685CVYvIjERpA_aem_ptkbjg2xE2KdpD6gC-e_fA#"><i class="fab fa-instagram"></i></a>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team Pi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/campaign.js"></script>
+    <script src="js/mobile.js"></script>
+
+</body>
+</html>

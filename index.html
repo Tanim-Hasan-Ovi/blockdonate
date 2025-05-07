@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockDonate - Decentralized Donation Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                        <li><button id="connect-wallet" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+                    </ul>
+                </nav>
+    
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars" id="menuIcon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu (placed outside the header) -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+            <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
+            <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+            <li><button id="connect-wallet-mobile" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+        </ul>
+    </div>
+                
+               
+
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transparent Blockchain Donations</h1>
+                <p>Donate with confidence knowing every transaction is recorded on the blockchain for complete transparency.</p>
+                <div class="hero-buttons">
+                    <a href="login.php" class="btn btn-primary" >  Join Community  </a>
+                 <a href="campaigns.html" class="btn btn-outline">Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <section class="features">
+        <div class="container">
+            <div class="feature-card">
+                <div class="step-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Secure</h3>
+                <p>All transactions protected by blockchain technology</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Community-Verified</h3>
+                <p>Donors collectively verify campaign authenticity</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-icon">
+                    <i class="fas fa-undo-alt"></i>
+                </div>
+                <h3>Auto-Refund</h3>
+                <p>Get refunded if campaign fails verification</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How BlockDonate Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>1. Create Account</h3>
+                    <p>Connect your wallet to create a decentralized identity</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>2. Start or Browse</h3>
+                    <p>Create a campaign or browse existing ones to support</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>3. Community Review</h3>
+                    <p>The community verifies campaign authenticity</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>4. Funds Released</h3>
+                    <p>Funds are released only after successful verification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-donate"></i>
+                        <span>BlockDonate</span>
+                    </div>
+                    <br>
+                    <p>Transparent giving powered by blockchain technology.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="campaigns.html">Campaigns</a></li>
+                        <li><a href="create-campaign.html">Start Campaign</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1FRMzVBqx2/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@uitsofficial"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/university-of-information-technology-and-sciences-uits-b669b1192/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/uits_uits.edu.bd/?fbclid=IwY2xjawJ4P8JleHRuA2FlbQIxMABicmlkETFSQ0xwNE9iUGNTMnlQekFJAR5P3NW8ZcXNLptk0SSwd81QtbtYuj-eEzbz4vnlW6WK65p3n685CVYvIjERpA_aem_ptkbjg2xE2KdpD6gC-e_fA#"><i class="fab fa-instagram"></i></a>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team Pi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/mobile.js"></script>
+
+</body>
+</html>

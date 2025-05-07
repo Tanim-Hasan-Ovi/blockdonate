@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockDonate - Admin Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/verification.css">
+
+</head>
+<body>
+    <header class="main-header admin-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li><a href="verification.html"class="active"><i class="fas fa-check-double"></i> Verifications</a></li>
+                        <li><a href="dashboard.html" ><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="index.html" button class="wallet-btn admin-logout"><i class="fas fa-sign-out-alt"></i> Logout</button></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="admin-nav">
+            <a href="verification.html" class="active">Pending Verification</a>
+            <a href="#">Approved Campaigns</a>
+            <a href="#">Declined Campaigns</a>
+        </div>
+
+        <h2>Pending Campaigns for Verification</h2>
+        
+        <div class="campaign-card">
+            <div class="campaign-header">
+                <div class="campaign-title">Help for Medical Treatment</div>
+                <div class="campaign-meta">Posted: 2 days ago | Duration: 30 days</div>
+            </div>
+            <div class="campaign-description">
+                <p>My father needs urgent heart surgery which costs $15,000. We've already spent all our savings on preliminary treatments.</p>
+            </div>
+            <div class="campaign-docs">
+                <h4>Supporting Documents:</h4>
+                <div class="documents">
+                    <a href="#" class="doc-link">Medical_Report.pdf</a>
+                    <a href="#" class="doc-link">Doctor_Letter.jpg</a>
+                    <a href="#" class="doc-link">Hospital_Bill.pdf</a>
+                </div>
+            </div>
+            <div class="verification-actions">
+                <button class="view-details">View Full Details</button>
+                <button class="approve-btn">Approve Campaign</button>
+                <button class="decline-btn">Decline Campaign</button>
+            </div>
+        </div>
+
+        <div class="campaign-card">
+            <div class="campaign-header">
+                <div class="campaign-title">School Fundraiser</div>
+                <div class="campaign-meta">Posted: 1 day ago | Duration: 45 days</div>
+            </div>
+            <div class="campaign-description">
+                <p>We're raising funds to buy new computers for our rural school. Currently we only have 5 computers for 200 students.</p>
+            </div>
+            <div class="campaign-docs">
+                <h4>Supporting Documents:</h4>
+                <div class="documents">
+                    <a href="#" class="doc-link">School_Letter.pdf</a>
+                    <a href="#" class="doc-link">Current_Lab.jpg</a>
+                </div>
+            </div>
+            <div class="verification-actions">
+                <button class="view-details">View Full Details</button>
+                <button class="approve-btn">Approve Campaign</button>
+                <button class="decline-btn">Decline Campaign</button>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">&raquo;</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>2025 Team Pi. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

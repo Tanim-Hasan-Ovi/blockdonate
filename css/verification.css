@@ -1,0 +1,616 @@
+/* verification.css - Enhanced Admin Verification Page Styles */
+
+/* Variables */
+:root {
+    --primary: #6c5ce7;
+    --primary-dark: #5649c0;
+    --primary-light: rgba(108, 92, 231, 0.1);
+    --secondary: #00cec9;
+    --secondary-light: rgba(0, 206, 201, 0.1);
+    --success: #00b894;
+    --success-light: rgba(0, 184, 148, 0.1);
+    --error: #d63031;
+    --error-light: rgba(214, 48, 49, 0.1);
+    --warning: #fdcb6e;
+    --dark: #2d3436;
+    --dark-light: #636e72;
+    --light: #dfe6e9;
+    --gray: #b2bec3;
+    --white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.08);
+}
+
+
+
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 65px;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+header .container {
+    padding: 0 1rem; 
+}
+
+
+
+/* Admin Navigation */
+.admin-nav {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray);
+    flex-wrap: wrap;
+}
+
+.admin-nav a {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-sm);
+    background-color: var(--white);
+}
+
+.admin-nav a:hover {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.admin-nav a.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.admin-nav a i {
+    font-size: 1rem;
+}
+
+/* Style for the section heading */
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0.5rem 0 1rem;
+    padding: 0.5rem 0;
+    position: relative;
+    
+    /* Gradient text */
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    /* Border effect */
+    border-bottom: 2px solid var(--primary-light);
+}
+
+
+@keyframes gradientShift {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.3rem;
+        margin: 1rem 0;
+    }
+}
+
+/* Optional gradient underline effect */
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+h2:hover::after {
+    transform: scaleX(1);
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.3rem;
+        margin: 1rem 0;
+    }
+}
+
+/* Campaign Cards */
+.campaign-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-color); 
+    border: 1px solid #eee; 
+}
+
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.campaign-card.pending {
+    border-left-color: var(--warning);
+}
+
+.campaign-card.approved {
+    border-left-color: var(--success);
+}
+
+.campaign-card.declined {
+    border-left-color: var(--error);
+}
+
+.campaign-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+   
+}
+
+.campaign-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0;
+    flex: 1;
+    min-width: 60%;
+}
+
+.campaign-meta {
+    color: var(--dark-light);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.campaign-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.campaign-meta i {
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.campaign-description {
+    color: var(--dark-light);
+    margin: 1rem 0;
+    line-height: 1.6;
+    padding: 0.5rem 0;
+    border-top: 1px dashed var(--gray);
+    border-bottom: 1px dashed var(--gray);
+}
+
+/* Documents Section */
+.campaign-docs h4 {
+    margin: 1.25rem 0 0.75rem;
+    color: var(--dark);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.documents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.doc-link:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.doc-link i {
+    font-size: 1rem;
+}
+
+/* Verification Actions */
+.verification-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.approve-btn, .decline-btn, .view-details {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-sm);
+    flex: 1;
+    min-width: 150px;
+    justify-content: center;
+}
+
+/* Document View Button - Purple Theme */
+.view-details {
+    background: linear-gradient(135deg, #6c5ce7, #8c7ae6); 
+    color: white;
+    border: 1px solid #5d4acb; 
+}
+
+.view-details:hover {
+    background: linear-gradient(135deg, #5d4acb, #7b68e0); 
+    box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3); 
+}
+
+.approve-btn {
+    background: linear-gradient(135deg, #00b894, #00cec9); 
+    color: white;
+    border: 1px solid #00a383; /* Darker green border */
+}
+
+.approve-btn, .decline-btn, .view-details {
+    position: relative;
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+
+/* Decline Button - Red Theme */
+.decline-btn {
+    background: linear-gradient(135deg, #d31027, #ea384d);
+        color: white;
+    border: 1px solid #c23636; /* Darker red border */
+}
+
+
+/* Tooltip/Pop-up Hover Effect */
+.approve-btn:hover::before,
+.decline-btn:hover::before,
+.view-details:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+
+
+.view-details:hover::after {
+    border-color: #6c5ce7 transparent transparent transparent;
+}
+
+.approve-btn:hover::after {
+    border-color: #00b894 transparent transparent transparent;
+}
+
+.decline-btn:hover::after {
+    border-color: #d63031 transparent transparent transparent;
+}
+
+/* Show Arrow on Hover */
+.approve-btn:hover::after,
+.decline-btn:hover::after,
+.view-details:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* HTML Example:
+<button class="view-details" data-tooltip="View document details">
+    <i class="fas fa-file-alt"></i> View
+</button>
+*/
+
+/* Enhanced Button Hover Effects */
+.view-details:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+}
+
+.approve-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+.decline-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(214, 48, 49, 0.3);
+}
+
+/* Pulse Animation for Important Actions */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 184, 148, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); }
+}
+
+.approve-btn.important {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse-alert {
+    0% { box-shadow: 0 0 0 0 rgba(214, 48, 49, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(214, 48, 49, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(214, 48, 49, 0); }
+}
+
+.decline-btn.alert {
+    animation: pulse-alert 1.5s infinite;
+}
+
+/* Icon colors to match */
+.view-details i { color: #d6c2ff; } /* Light purple icon */
+.approve-btn i { color: #a8f3e0; } /* Light teal icon */
+.decline-btn i { color: #ffb8b8; } /* Light red icon */
+
+/* Active/focus states */
+.view-details:active { background: #5d4acb; }
+.approve-btn:active { background: #00a383; }
+.decline-btn:active { background: #c23636; }
+
+/* Disabled state colors */
+.view-details:disabled { background: #b2b2ff; }
+.approve-btn:disabled { background: #88d8c0; }
+.decline-btn:disabled { background: #ff9e9e; }
+
+/* Status Badges */
+.status-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.status-pending {
+    background-color: rgba(253, 203, 110, 0.2);
+    color: #e17055;
+}
+
+.status-approved {
+    background-color: rgba(0, 184, 148, 0.2);
+    color: #00b894;
+}
+
+.status-declined {
+    background-color: rgba(214, 48, 49, 0.2);
+    color: #d63031;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    gap: 0.5rem;
+}
+
+.pagination a {
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    color: var(--dark);
+    border-radius: 0.5rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.pagination a.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.pagination a.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .campaign-title {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .verification-actions {
+        flex-direction: column;
+    }
+
+    .approve-btn, .decline-btn, .view-details {
+        width: 100%;
+    }
+
+    .campaign-header {
+        flex-direction: column;
+    }
+
+    .campaign-meta {
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .admin-nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .campaign-card {
+        padding: 1.25rem;
+    }
+
+    .campaign-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Utility Classes */
+.text-primary {
+    color: var(--primary);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-error {
+    color: var(--error);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.shadow-hover {
+    transition: var(--transition);
+}
+
+.shadow-hover:hover {
+    box-shadow: var(--shadow-lg);
+}
