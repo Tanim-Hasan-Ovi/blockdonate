@@ -1,11 +1,15 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 
 // Database connection
 $servername = "localhost";
-$username = "ovi"; 
-$password = "a123456";     
-$database = "block_donate";
+$username = "root"; 
+$password = ""; 
+$database = "block__donate";
+
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {
@@ -14,42 +18,46 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $pass = $_POST['password'];
 
     // Check admin table first
     $stmt = $conn->prepare("SELECT * FROM admins WHERE email = ? AND password = ?");
-    $stmt->bind_param("ss", $email, $password);
+    if (!$stmt) {
+        die("Admin statement failed: " . $conn->error);
+    }
+    $stmt->bind_param("ss", $email, $pass);
     $stmt->execute();
     $adminResult = $stmt->get_result();
 
     if ($adminResult->num_rows > 0) {
-        // Admin login successful
         $_SESSION['user_type'] = 'admin';
         $_SESSION['email'] = $email;
         header("Location: dashboard.html");
         exit();
     }
     
-    // If not admin, check users table
+    // Check users table
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
-    $stmt->bind_param("ss", $email, $password);
+    if (!$stmt) {
+        die("User statement failed: " . $conn->error);
+    }
+    $stmt->bind_param("ss", $email, $pass);
     $stmt->execute();
     $userResult = $stmt->get_result();
 
     if ($userResult->num_rows > 0) {
-        // Regular user login successful
         $_SESSION['user_type'] = 'user';
         $_SESSION['email'] = $email;
         header("Location: profile.html");
         exit();
     }
-    
-    // If neither matched
+
     $_SESSION['login_error'] = "Invalid email or password";
     header("Location: login.php");
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

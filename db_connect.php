@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "ovi";
-$password = "a123456";
-$database = "block_donate";
+$username = "root";
+$password = "";
+$database = "block__donate";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);

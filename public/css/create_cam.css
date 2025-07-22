@@ -1,0 +1,299 @@
+/* Create Campaign Section */
+.create-campaign {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+.create-campaign h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    color: var(--dark);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.campaign-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--light);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 1em;
+}
+
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px dashed var(--gray);
+    border-radius: 8px;
+    background-color: white;
+}
+
+.form-group input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+    background-color: var(--light);
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: all 0.2s ease;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 8px;
+    color: var(--dark-light);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    margin: 30px 0;
+}
+
+.checkbox-group input {
+    margin-right: 12px;
+    margin-top: 3px;
+    accent-color: var(--primary);
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+/* File Upload Styles */
+.file-upload-wrapper {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.file-upload-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border: 2px dashed var(--gray);
+    border-radius: 8px;
+    background-color: rgba(108, 92, 231, 0.05);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-upload-label:hover {
+    border-color: var(--primary);
+    background-color: rgba(108, 92, 231, 0.1);
+}
+
+.file-upload-label i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.file-upload-label span {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.file-upload-label small {
+    color: var(--dark-light);
+    font-size: 0.85rem;
+}
+
+.file-preview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.file-preview-item {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.file-preview-item img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+}
+
+.file-preview-item.pdf {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+}
+
+.file-preview-item .file-info {
+    padding: 8px;
+    background: white;
+}
+
+.file-preview-item .file-name {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+}
+
+.file-preview-item .file-size {
+    font-size: 0.65rem;
+    color: var(--dark-light);
+}
+
+.file-preview-item .remove-file {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--error);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.file-preview-item:hover .remove-file {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-campaign {
+        padding: 60px 0;
+    }
+    
+    .create-campaign h1 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .campaign-form {
+        padding: 25px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .create-campaign {
+        padding: 40px 0;
+    }
+    
+    .create-campaign h1 {
+        font-size: 1.6rem;
+    }
+    
+    .campaign-form {
+        padding: 20px;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+    }
+    
+    .btn-primary {
+        padding: 12px;
+    }
+}
