@@ -9,5 +9,3 @@ CREATE TABLE admins (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE UNIQUE INDEX idx_unique_wallet ON admins(wallet_address) WHERE wallet_address IS NOT NULL;

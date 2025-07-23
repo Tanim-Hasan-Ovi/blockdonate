@@ -49,65 +49,66 @@
             <br>
             <h1>Start Your Campaign</h1>
             <form id="campaign-form" class="campaign-form"
-      action="/create-campaign"
-      method="POST"
-      enctype="multipart/form-data">
+                  action="/create-campaign"
+                  method="POST"
+                  enctype="multipart/form-data">
 
-  <div class="form-group">
-      <label for="campaign-title">Campaign Title</label>
-      <input type="text" id="campaign-title" name="title" required>
-  </div>
-  
-  <div class="form-group">
-      <label for="campaign-description">Description</label>
-      <textarea id="campaign-description" name="description" rows="5" required></textarea>
-  </div>
-  
-  <div class="form-group">
-      <label for="campaign-category">Category</label>
-      <select id="campaign-category" name="category" required>
-          <option value="">Select a category</option>
-          <option value="medical">Medical</option>
-          <option value="education">Education</option>
-          <option value="emergency">Emergency</option>
-      </select>
-  </div>
-  
-  <div class="form-group">
-      <label for="campaign-goal">Funding Goal (ETH)</label>
-      <input type="number" id="campaign-goal" name="goal" min="0.01" step="0.001" required>
-  </div>
-  
-  <div class="form-group">
-      <label for="campaign-duration">Duration (days)</label>
-      <input type="number" id="campaign-duration" name="duration" min="1" max="90" required>
-  </div>
-  
-  <div class="form-group">
-      <label for="campaign-document">Upload Proof Documents</label>
-      <div class="file-upload-wrapper">
-          <input type="file" id="campaign-document" name="documents" 
-                 accept=".pdf,.jpg,.jpeg,.png" 
-                 multiple 
-                 required
-                 class="file-upload-input">
-          <label for="campaign-document" class="file-upload-label">
-              <i class="fas fa-cloud-upload-alt"></i>
-              <span>Choose files or drag them here</span>
-              <small>PDF, JPG, or PNG (max 5MB each)</small>
-          </label>
-          <div class="file-preview-container" id="file-preview"></div>
-      </div>
-  </div>
-  
-  <div class="form-group checkbox-group">
-      <input type="checkbox" id="terms-agree" name="termsAgree" required>
-      <label for="terms-agree">I agree to the terms and conditions</label>
-  </div>
-  
-  <button type="submit" class="btn-primary">Submit Campaign</button>
-</form>
+                <div class="form-group">
+                    <label for="campaign-title">Campaign Title</label>
+                    <input type="text" id="campaign-title" name="title" required>
+                </div>
 
+                <div class="form-group">
+    <label for="campaign-image">Campaign Cover Image</label>
+    <input type="file" id="campaign-image" name="image" accept="image/*" required>
+</div>
+
+                
+                <div class="form-group">
+                    <label for="campaign-description">Description</label>
+                    <textarea id="campaign-description" name="description" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="campaign-category">Category</label>
+                    <select id="campaign-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="medical">Medical</option>
+                        <option value="education">Education</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="campaign-goal">Funding Goal (ETH)</label>
+                    <input type="number" id="campaign-goal" name="goal" min="0.01" step="0.001" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="campaign-duration">Duration (days)</label>
+                    <input type="number" id="campaign-duration" name="duration" min="1" max="90" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="campaign-document">Upload Proof Documents</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="campaign-document" name="documents" accept=".pdf,.jpg,.jpeg,.png" multiple required class="file-upload-input">
+                        <label for="campaign-document" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Choose files or drag them here</span>
+                            <small>PDF, JPG, or PNG (max 5MB each)</small>
+                        </label>
+                        <div class="file-preview-container" id="file-preview"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms-agree" name="termsAgree" required>
+                    <label for="terms-agree">I agree to the terms and conditions</label>
+                </div>
+                
+                <button type="submit" class="btn-primary">Submit Campaign</button>
+            </form>
         </div>
     </section>
 
@@ -150,7 +151,6 @@
                         <a href="https://www.youtube.com/@uitsofficial"><i class="fab fa-youtube"></i></a>
                         <a href="https://www.linkedin.com/in/university-of-information-technology-and-sciences-uits-b669b1192/"><i class="fab fa-linkedin"></i></a>
                         <a href="https://www.instagram.com/uits_uits.edu.bd/?fbclid=IwY2xjawJ4P8JleHRuA2FlbQIxMABicmlkETFSQ0xwNE9iUGNTMnlQekFJAR5P3NW8ZcXNLptk0SSwd81QtbtYuj-eEzbz4vnlW6WK65p3n685CVYvIjERpA_aem_ptkbjg2xE2KdpD6gC-e_fA#"><i class="fab fa-instagram"></i></a>
-                        
                     </div>
                 </div>
 
@@ -164,6 +164,59 @@
     <script src="js/main.js"></script>
     <script src="js/campaign.js"></script>
     <script src="js/mobile.js"></script>
+
+    <script>
+    // File preview functionality
+    document.getElementById('campaign-document').addEventListener('change', function(e) {
+        const files = e.target.files;
+        const previewContainer = document.getElementById('file-preview');
+        previewContainer.innerHTML = ''; // Clear previous preview
+
+        Array.from(files).forEach(file => {
+            const filePreview = document.createElement('div');
+            filePreview.classList.add('file-preview-item');
+
+            const fileName = document.createElement('span');
+            fileName.textContent = file.name;
+            filePreview.appendChild(fileName);
+
+            const fileSize = document.createElement('span');
+            fileSize.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+            filePreview.appendChild(fileSize);
+
+            previewContainer.appendChild(filePreview);
+        });
+    });
+    </script>
+<script>
+  // Cover Image Preview
+const coverInput = document.getElementById('campaign-image');  // id: campaign-image
+const coverPreview = document.getElementById('cover-preview');
+
+coverInput.addEventListener('change', function () {
+  const file = this.files[0];
+  if (file) {
+    coverPreview.src = URL.createObjectURL(file);
+    coverPreview.style.display = 'block';
+  } else {
+    coverPreview.style.display = 'none';
+  }
+});
+
+// Document Preview (filename list)
+const documentInput = document.getElementById('campaign-document');  // id: campaign-document
+const documentList = document.getElementById('file-preview');       // id: file-preview
+
+documentInput.addEventListener('change', function () {
+  documentList.innerHTML = ''; 
+  Array.from(this.files).forEach(file => {
+    const li = document.createElement('div'); 
+    li.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+    documentList.appendChild(li);
+  });
+});
+
+</script>
 
 </body>
 </html>

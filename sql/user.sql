@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `wallet_address` (`wallet_address`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);

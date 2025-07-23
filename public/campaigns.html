@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockDonate - Decentralized Donation Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/campaign.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="campaigns.html" class="active"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                        <li><button id="connect-wallet" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="campaigns-header">
+        <div class="container">
+            <h1>Active Campaigns</h1>
+            <div class="campaign-filters">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="medical">Medical</option>
+                    <option value="education">Education</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+                <select id="sort-by">
+                    <option value="newest">Newest First</option>
+                    <option value="ending">Ending Soon</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="campaigns-list">
+        <div class="container">
+            <div class="campaigns-grid" id="all-campaigns">
+                <!-- Campaigns will be dynamically loaded here with styled cards -->
+            </div>
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-donate"></i>
+                        <span>BlockDonate</span>
+                    </div>
+                    <br>
+                    <p>Transparent giving powered by blockchain technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="campaigns.html">Campaigns</a></li>
+                        <li><a href="create-campaign.html">Start Campaign</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1FRMzVBqx2/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@uitsofficial"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/university-of-information-technology-and-sciences-uits-b669b1192/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/uits_uits.edu.bd/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team Pi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/campaign.js"></script>
+
+</body>
+</html>

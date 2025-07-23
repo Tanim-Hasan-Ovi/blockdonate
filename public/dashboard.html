@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockDonate | Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+<body>
+    <header class="main-header admin-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li><a href="verification.html"><i class="fas fa-check-double"></i> Verifications</a></li>
+                        <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="index.html" class="wallet-btn admin-logout"><i class="fas fa-sign-out-alt"></i> Logout</button></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Dashboard Overview -->
+        <section class="admin-overview">
+            <div class="container">
+                <h1 class="admin-title">Admin Dashboard</h1>
+                
+                <div class="stats-grid">
+                    <button class="stat-card-btn" aria-label="Pending Campaigns - 18 items"onclick="window.location.href='pending.html'">
+                      <div class="stat-content">
+                        <h3>Pending Campaigns</h3>
+                        <p class="stat-value">18</p>
+                        <div class="stat-trend up">
+                          <i class="fas fa-arrow-up"></i> 12%
+                        </div>
+                      </div>
+                      <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                      </div>
+                    </button>
+                    
+                    <button class="stat-card-btn" aria-label="Active Users - 1,245 users" onclick="window.location.href='active_user.html'">
+                      <div class="stat-content">
+                        <h3>Active <br> Users</h3>
+                        <p class="stat-value">1,245</p>
+                        <div class="stat-trend up">
+                          <i class="fas fa-arrow-up"></i> 8%
+                        </div>
+                      </div>
+                      <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </button>
+                    
+                    <button class="stat-card-btn" aria-label="Verifications Needed - 7 pending"
+                    onclick="window.location.href='verification.html'">
+                     <div class="stat-content">
+                        <h3>Aproval Needed</h3>
+                        <p class="stat-value">7</p>
+                        <div class="stat-trend down">
+                          <i class="fas fa-arrow-down"></i> 3%
+                        </div>
+                      </div>
+                      <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                      </div>
+                    </button>
+                  
+                    <button class="stat-card-btn" aria-label="Today's Transactions - 56 transactions"onclick="window.location.href='today_tan.html'">
+                      <div class="stat-content">
+                        <h3>Today's Transactions</h3>
+                        <p class="stat-value">56</p>
+                        <div class="stat-trend up">
+                          <i class="fas fa-arrow-up"></i> 24%
+                        </div>
+                      </div>
+                      <div class="stat-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                      </div>
+                    </button>
+                  </div>
+
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="admin-activity">
+            <div class="container">
+                <div class="activity-container">
+                    <div class="activity-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-list"></i> Recent Campaigns</h2>
+                            <a href="admin-campaigns.html" class="view-all">View All</a>
+                        </div>
+                        
+                        <div class="campaign-list">
+                            <div class="campaign-item pending">
+                                <div class="campaign-info">
+                                    <h3>Medical Fund for Sarah</h3>
+                                    <div class="campaign-meta">
+                                        <span><i class="fas fa-user"></i> Sarah Johnson</span>
+                                        <span><i class="fas fa-calendar"></i> Deadline: 3 days</span>
+                                <span class="eth-amount"><i class="fab fa-ethereum"></i> 4.2/10 ETH</span>           
+                                 </div>
+                                </div>
+                                <div class="campaign-actions">
+                                    <button class="btn btn-review"><i class="fas fa-search"></i> Review</button>
+                                </div>
+                            </div>
+                            
+                            <div class="campaign-item approved">
+                                <div class="campaign-info">
+                                    <h3>School Renovation Project</h3>
+                                    <div class="campaign-meta">
+                                        <span><i class="fas fa-user"></i> Community Group</span>
+                                        <span><i class="fas fa-calendar"></i> Deadline: 15 days</span>
+                                        <span class="eth-amount"><i class="fab fa-ethereum"></i> 8.75/15 ETH</span>                                    </div>
+                                </div>
+                                <div class="campaign-actions">
+                                    <button class="btn btn-view"><i class="fas fa-eye"></i> View</button>
+                                </div>
+                            </div>
+                            
+                            <div class="campaign-item rejected">
+                                <div class="campaign-info">
+                                    <h3>Business Startup</h3>
+                                    <div class="campaign-meta">
+                                        <span><i class="fas fa-user"></i> Mark Williams</span>
+                                        <span><i class="fas fa-calendar"></i> Deadline Passed</span>
+                                        <span class="eth-amount"><i class="fab fa-ethereum"></i>1.05/2.5 ETH</span>                                    </div>
+                                    </div>
+                                
+
+                                <div class="campaign-actions">
+                                    <button class="btn btn-details"><i class="fas fa-info-circle"></i> Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-check-double"></i> Verification Queue</h2>
+                            <a href="admin-verifications.html" class="view-all">View All</a>
+                        </div>
+                        
+                        <div class="verification-list">
+                            <div class="verification-item">
+                                <div class="verification-info">
+                                    <h3>Community Garden</h3>
+                                    <div class="verification-stats">
+                                        <div class="vote-progress">
+                                            <div class="progress-bar" style="width: 72%"></div>
+                                        </div>
+                                        <div class="vote-counts">
+                                            <span class="positive"><i class="fas fa-thumbs-up"></i> 72%</span>
+                                            <span class="negative"><i class="fas fa-thumbs-down"></i> 28%</span>
+                                        </div>
+                                    </div>
+                                    <div class="verification-meta">
+                                        <span><i class="fas fa-clock"></i> 2 days remaining</span>
+                                    </div>
+                                </div>
+                                <div class="verification-actions">
+                                    <button class="btn btn-process"><i class="fas fa-cog"></i> Process</button>
+                                </div>
+                            </div>
+                            
+                            <div class="verification-item">
+                                <div class="verification-info">
+                                    <h3>Animal Shelter Support</h3>
+                                    <div class="verification-stats">
+                                        <div class="vote-progress">
+                                            <div class="progress-bar" style="width: 65%"></div>
+                                        </div>
+                                        <div class="vote-counts">
+                                            <span class="positive"><i class="fas fa-thumbs-up"></i> 65%</span>
+                                            <span class="negative"><i class="fas fa-thumbs-down"></i> 35%</span>
+                                        </div>
+                                    </div>
+                                    <div class="verification-meta">
+                                        <span><i class="fas fa-clock"></i> 1 day remaining</span>
+                                    </div>
+                                </div>
+                                <div class="verification-actions">
+                                    <button class="btn btn-process"><i class="fas fa-cog"></i> Process</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="js/admin-script.js"></script>
+</body>
+</html>
