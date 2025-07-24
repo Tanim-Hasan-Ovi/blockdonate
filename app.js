@@ -18,6 +18,87 @@ db.connect((err) => {
   if (err) throw err;
   console.log('Connected to MySQL database');
 });
+//
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
+// Set the 'views' directory for templates
+app.set('views', path.join(__dirname, 'views'));
+
+// Serve static files from the 'public' folder (e.g., CSS, images, JS)
+app.use(express.static(path.join(__dirname, 'public')));
+//
+
+
+//
+app.get('/profile', (req, res) => {
+  if (req.session.user_type === 'user') {
+    // Render the 'profile.ejs' template from the 'views' folder
+    res.render('profile', {
+      username: req.session.username,
+      email: req.session.email
+    });
+  } else {
+    res.redirect('/login');
+  }
+});
+
+
+//
+
+
+//
+// Middleware
+app.use(express.static('public'));  // Serve static files
+app.use(express.urlencoded({ extended: true }));  // Parse URL-encoded bodies
+app.use(express.json());  // Parse JSON bodies
+
+// Setup session management
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Route to render the signup page
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'signup.html'));  // Serve signup.html file
+});
+
+// Route to handle signup POST request
+app.post('/signup', (req, res) => {
+  const { username, email, password, confirmPassword } = req.body;
+
+  // Validate passwords match
+  if (password !== confirmPassword) {
+    return res.status(400).send('Passwords do not match');
+  }
+
+  // Check if the email already exists
+  const checkEmailQuery = 'SELECT * FROM users WHERE email = ?';
+  db.query(checkEmailQuery, [email], (err, result) => {
+    if (err) {
+      console.error('Error checking email:', err);
+      return res.status(500).send('Internal server error');
+    }
+
+    if (result.length > 0) {
+      return res.status(400).send('Email already exists');
+    }
+
+    // Insert user into the database
+    const insertQuery = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+    db.query(insertQuery, [username, email, password], (err, result) => {
+      if (err) {
+        console.error('Error inserting user:', err);
+        return res.status(500).send('Error saving user');
+      }
+
+      // Redirect to the login page after successful account creation
+      res.send('<script>alert("Account created successfully! Redirecting to login..."); window.location.href = "/login";</script>');
+    });
+  });
+});
 
 // Create upload folder if not exists
 const uploadPath = path.join(__dirname, 'uploads');
@@ -40,26 +121,15 @@ const upload = multer({ storage: storage }).fields([
   { name: 'documents', maxCount: 10 } // Allow up to 10 document files
 ]);
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-
 // Serve uploads folder as static content
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Setup session management
-app.use(session({
-  secret: 'your_secret_key', // Secret key for session
-  resave: false,
-  saveUninitialized: true
-}));
-
 // Route to render the login page
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'login.html'));  // Serve login.html file
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));  // Serve login.html from the public folder
 });
 
+//
 // Route to handle login POST request
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
@@ -71,7 +141,7 @@ app.post('/login', (req, res) => {
       return res.status(500).send('Internal server error');
     }
 
-      if (result.length > 0) {
+    if (result.length > 0) {
       req.session.user_type = 'admin';
       req.session.email = email;
       return res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));  // Serve dashboard.html to the admin
@@ -84,10 +154,14 @@ app.post('/login', (req, res) => {
         return res.status(500).send('Internal server error');
       }
 
-     if (result.length > 0) {
+      if (result.length > 0) {
         req.session.user_type = 'user';
         req.session.email = email;
-        return res.sendFile(path.join(__dirname, 'public', 'profile.html'));  // Serve profile.html to the user
+        req.session.username = result[0].username; // Add the username to the session
+        return res.render('profile', {  // Render the profile.ejs template
+          username: req.session.username,
+          email: req.session.email
+        });
       }
 
       // If no user or admin found
@@ -97,6 +171,7 @@ app.post('/login', (req, res) => {
   });
 });
 
+//
 // Route to render the dashboard (admin)
 app.get('/dashboard', (req, res) => {
   if (req.session.user_type === 'admin') {

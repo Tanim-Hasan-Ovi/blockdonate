@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dashboard | BlockDonate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
+                        <li><a href="profile.html" class="active"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                        <li><button id="connect-wallet" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <main class="main-content">
+            <div class="profile-card">
+                <div class="profile-info">
+                    <img src="images/ovi.JPG" alt="Profile" class="profile-avatar" id="profile-image">
+                    <div class="profile-details">
+                        <h2 id="profile-name"><%= username %></h2> <!-- Render username here -->
+                        <p><i class="fas fa-envelope"></i> <span id="profile-email"><%= email %></span></p> <!-- Render email here -->
+                        <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
