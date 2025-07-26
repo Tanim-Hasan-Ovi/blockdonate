@@ -34,18 +34,42 @@
         <main class="main-content">
             <div class="profile-card">
                 <div class="profile-info">
-                    <img src="images/ovi.JPG" alt="Profile" class="profile-avatar" id="profile-image">
+                        <img src="<%= user.profile_image || '/images/default-avatar.png' %>" alt="Profile" class="profile-avatar" id="profile-image">
                     <div class="profile-details">
-                        <h2 id="profile-name"><%= username %></h2> <!-- Render username here -->
-                        <p><i class="fas fa-envelope"></i> <span id="profile-email"><%= email %></span></p> <!-- Render email here -->
+                        <h2 id="profile-name"><%= user.username %></h2>
+                        <p><i class="fas fa-envelope"></i> <span id="profile-email"><%= user.email %></span></p>
+                        <p><i class="fas fa-phone"></i> <span id="profile-phone"><%= user.phone %></span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span id="profile-address"><%= user.address %></span></p>
                         <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- Modal for Profile Editing -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <form action="/user/update-profile" method="POST" enctype="multipart/form-data" id="edit-profile-form">
+                <label for="edit-name">Name:</label>
+                <input type="text" id="edit-name" name="username" value="<%= user.username %>" required>
+
+                <label for="edit-phone">Phone:</label>
+                <input type="text" id="edit-phone" name="phone" value="<%= user.phone %>" required>
+
+                <label for="edit-address">Address:</label>
+                <input type="text" id="edit-address" name="address" value="<%= user.address %>" required>
+
+                <label for="profile-image-input">Profile Picture:</label>
+                <input type="file" id="profile-image-input" name="profileImage" accept="image/*">
+
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
     <script src="js/profile.js"></script>
 </body>
 </html>
