@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockDonate - Decentralized Donation Platform</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -22,8 +22,25 @@
                     <ul>
                         <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="campaigns.html"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
-                        <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                       <!-- Example protected links -->
+<li>
+    <a href="#" 
+       id="startCampaignLink" 
+       data-protected 
+       data-authed-href="create-campaign.html">
+       <i class="fas fa-plus-circle"></i> Start Campaign
+    </a>
+</li>
+
+                       <li>
+    <a href="#" 
+       id="myProfileLink" 
+       data-protected 
+       data-authed-href="profile.html">
+       <i class="fas fa-user-circle"></i> My Profile
+    </a>
+</li>
+
                         <li><a href="wallet.html" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</a></li>
 
                        
@@ -36,7 +53,36 @@
             </div>
         </div>
     </header>
-    
+
+   
+<!-- Profile Access Modal -->
+<div class="modal" id="profileModal">
+    <div class="modal-content">
+        <span class="close" data-modal="profileModal">&times;</span>
+        <h2 id="modalTitle">Login to Access Your Profile</h2>
+        <p id="modalMessage">You need to log in to access your profile.</p>
+        <a href="login.html" class="modal-btn btn-primary">Login</a>
+        <a href="signup.html" class="modal-btn btn-primary">Sign Up</a>
+    </div>
+</div>
+
+<!-- Campaign Access Modal -->
+<div class="modal" id="campaignModal">
+    <div class="modal-content">
+        <span class="close" data-modal="campaignModal">&times;</span>
+        <h2 id="modalTitle">Login to Create Campaign</h2>
+        <p id="modalMessage">You need to log in to create your campaign.</p>
+        <a href="login.html" class="modal-btn btn-primary">Login</a>
+        <a href="signup.html" class="modal-btn btn-primary">Sign Up</a>
+    </div>
+</div>
+
+
+
+
+
+
+
     <!-- Mobile Menu (placed outside the header) -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -183,6 +229,12 @@
 
     <script src="js/main.js"></script>
     <script src="js/mobile.js"></script>
+    <script src="js/indexmodal.js"></script>
+    <script src="js/auth.js"></script>
+     <script type="module" src="/js/auth/auth-core.js"></script>
+    <script type="module" src="/js/auth/auth-modals.js"></script>
+    <script type="module" src="/js/auth/auth-session.js"></script>
+    
 
 </body>
 </html>

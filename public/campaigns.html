@@ -6,6 +6,8 @@
     <title>BlockDonate - Decentralized Donation Platform</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/campaign.css">
+        <link rel="stylesheet" href="css/modal.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -20,15 +22,36 @@
                     <ul>
                         <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="campaigns.html" class="active"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
-                        <li><a href="create-campaign.html"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                   <li><a href="create-campaign.html" id="startCampaignLink"><i class="fas fa-plus-circle"></i> Start Campaign</a></li>                        
+                        <li><a href="#" id="myProfileLink"><i class="fas fa-user-circle"></i> My Profile</a></li>
                         <li><button id="connect-wallet" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
+    
+<!-- Profile Access Modal -->
+<div class="modal" id="profileModal">
+    <div class="modal-content">
+        <span class="close" data-modal="profileModal">&times;</span>
+        <h2 id="modalTitle">Login to Access Your Profile</h2>
+        <p id="modalMessage">You need to log in to access your profile.</p>
+        <a href="login.html" class="modal-btn btn-primary">Login</a>
+        <a href="signup.html" class="modal-btn btn-primary">Sign Up</a>
+    </div>
+</div>
 
+<!-- Campaign Access Modal -->
+<div class="modal" id="campaignModal">
+    <div class="modal-content">
+        <span class="close" data-modal="campaignModal">&times;</span>
+        <h2 id="modalTitle">Login to Create Campaign</h2>
+        <p id="modalMessage">You need to log in to create your campaign.</p>
+        <a href="login.html" class="modal-btn btn-primary">Login</a>
+        <a href="signup.html" class="modal-btn btn-primary">Sign Up</a>
+    </div>
+</div>
     <section class="campaigns-header">
         <div class="container">
             <h1>Active Campaigns</h1>
@@ -106,6 +129,8 @@
 
     <script src="js/main.js"></script>
     <script src="js/campaign.js"></script>
+        <script src="js/cm.js"></script>
+
 
 </body>
 </html>
