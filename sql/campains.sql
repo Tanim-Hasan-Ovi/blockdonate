@@ -9,3 +9,10 @@ CREATE TABLE IF NOT EXISTS campaigns (
   user_email VARCHAR(255), 
   FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE
 );
+
+ALTER TABLE campaigns
+ADD COLUMN user_email VARCHAR(255),
+ADD CONSTRAINT fk_user_email FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE;
+
+ALTER TABLE campaigns
+ADD COLUMN cover_image VARCHAR(255);

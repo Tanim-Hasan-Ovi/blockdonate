@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockDonate - Decentralized Donation Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/campaign.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-donate"></i>
+                    <span>BlockDonate</span>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/campaigns" class="active"><i class="fas fa-hand-holding-heart"></i> Campaigns</a></li>
+                        <li>
+                            <a href="#" 
+                               id="startCampaignLink" 
+                               data-protected 
+                               data-authed-href="/create-campaign">
+                               <i class="fas fa-plus-circle"></i> Start Campaign
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" 
+                               id="myProfileLink" 
+                               data-protected 
+                               data-authed-href="/profile">
+                               <i class="fas fa-user-circle"></i> My Profile
+                            </a>
+                        </li>
+                        <li><button id="connect-wallet" class="wallet-btn"><i class="fas fa-wallet"></i> Connect Wallet</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Profile Access Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <span class="close" data-modal="profileModal">&times;</span>
+            <h2 id="modalTitle">Login to Access Your Profile</h2>
+            <p id="modalMessage">You need to log in to access your profile.</p>
+            <a href="/login" class="modal-btn btn-primary">Login</a>
+            <a href="/signup" class="modal-btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Campaign Access Modal -->
+    <div class="modal" id="campaignModal">
+        <div class="modal-content">
+            <span class="close" data-modal="campaignModal">&times;</span>
+            <h2 id="modalTitle">Login to Create Campaign</h2>
+            <p id="modalMessage">You need to log in to create your campaign.</p>
+            <a href="/login" class="modal-btn btn-primary">Login</a>
+            <a href="/signup" class="modal-btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <section class="campaigns-header">
+        <div class="container">
+            <h1>Active Campaigns</h1>
+            <div class="campaign-filters">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="medical">Medical</option>
+                    <option value="education">Education</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+                <select id="sort-by">
+                    <option value="newest">Newest First</option>
+                    <option value="ending">Ending Soon</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="campaigns-list">
+        <div class="container">
+            <div id="all-campaigns" class="campaigns-grid">
+    <!-- JavaScript will populate campaigns here -->
+</div>
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-donate"></i>
+                        <span>BlockDonate</span>
+                    </div>
+                    <br>
+                    <p>Transparent giving powered by blockchain technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/campaigns">Campaigns</a></li>
+                        <li><a href="/create-campaign">Start Campaign</a></li>
+                        <li><a href="/profile">My Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1FRMzVBqx2/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@uitsofficial"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/university-of-information-technology-and-sciences-uits-b669b1192/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/uits_uits.edu.bd/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team Pi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/campaign.js"></script>
+    <script src="/js/cm.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+// Global variable to store fetched campaigns
+let campaigns = [];
+
+// Fetch campaigns from the server
+fetch('/campaigns')
+    .then(response => response.json())
+    .then(data => {
+        campaigns = data;  // Store the campaigns data globally
+        const campaignsGrid = document.getElementById('all-campaigns');
+
+        // Clear the grid before adding new campaigns to avoid duplication
+        campaignsGrid.innerHTML = ''; // Clears previous campaigns
+
+        // Iterate through campaigns to create campaign cards
+        campaigns.forEach(campaign => {
+            const campaignCard = document.createElement('div');
+            campaignCard.classList.add('campaign-card');
+
+            campaignCard.innerHTML = `
+                <div class="campaign-image">
+                    <img src="/uploads/${campaign.cover_image}" alt="Campaign Image">
+                </div>
+                <div class="campaign-content">
+                    <h3 class="campaign-title">${campaign.title}</h3>
+                    <p class="campaign-description">${campaign.description}</p>
+                    <div class="campaign-meta">
+                        <span class="campaign-category ${campaign.category.toLowerCase()}">${campaign.category}</span>
+                        <span class="campaign-deadline">${campaign.duration} days left</span>
+                    </div>
+
+                    <!-- View Documents Button -->
+                    <div class="campaign-document">
+                        <button class="btn-view-document" onclick="viewDocuments(${campaign.id})">
+                            <i class="fas fa-file-alt"></i> View Documents
+                        </button>
+                    </div>
+
+                    <div class="campaign-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${campaign.progress || 0}%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>${campaign.raised || 0} ETH</span>
+                            <span>${campaign.progress || 0}% funded</span>
+                        </div>
+                    </div>
+                    <div class="campaign-actions">
+                        <button class="btn-donate">Donate Now</button>
+                    </div>
+                </div>
+
+                <!-- Document container (hidden by default) -->
+                <div id="documents-${campaign.id}" class="documents-container" style="display: none;">
+                    <!-- Documents will be displayed here -->
+                </div>
+            `;
+
+            campaignsGrid.appendChild(campaignCard);
+        });
+    })
+    .catch(error => console.error('Error fetching campaigns:', error));
+
+// Function to open the document directly on button click
+function viewDocuments(campaignId) {
+    const campaign = campaigns.find(c => c.id === campaignId);
+
+    const documentContainer = document.getElementById(`documents-${campaignId}`);
+    if (!documentContainer) return;
+
+    // Clear previous documents
+    documentContainer.innerHTML = '';
+
+    if (campaign && campaign.documents && campaign.documents.length > 0) {
+        // Show container
+        documentContainer.style.display = 'block';
+
+        campaign.documents.forEach(doc => {
+            const docLink = document.createElement('a');
+            docLink.href = `/uploads/${doc.filePath}`;
+            docLink.target = '_blank';
+            docLink.textContent = doc.fileName;
+            docLink.classList.add('document-link');
+            documentContainer.appendChild(docLink);
+            documentContainer.appendChild(document.createElement('br'));
+        });
+    } else {
+        documentContainer.innerHTML = '<p>No documents available.</p>';
+        documentContainer.style.display = 'block';
+    }
+}
+</script>
+</body>
+</html>
