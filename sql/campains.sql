@@ -5,5 +5,7 @@ CREATE TABLE IF NOT EXISTS campaigns (
   category VARCHAR(100),
   goal DECIMAL(10,2),
   duration INT,
-  cover_image VARCHAR(255)
+  cover_image VARCHAR(255),
+  user_email VARCHAR(255), 
+  FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE
 );

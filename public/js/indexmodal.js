@@ -5,24 +5,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const myProfileLink = document.getElementById("myProfileLink");
     const startCampaignLink = document.getElementById("startCampaignLink");
 
-    // Check if user is logged in
+    // Function to check if the user is logged in
     function isLoggedIn() {
         const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
-        return !!token;
-    }
-
-    // Hide modals if already logged in
-    if (isLoggedIn()) {
-        if (profileModal) profileModal.style.display = "none";
-        if (campaignModal) campaignModal.style.display = "none";
+        return !!token; // If token exists, user is logged in
     }
 
     // My Profile link logic
     if (myProfileLink) {
         myProfileLink.addEventListener("click", function (event) {
             if (!isLoggedIn()) {
+                // If not logged in, prevent the default link behavior and show the profile modal
                 event.preventDefault();
                 if (profileModal) profileModal.style.display = "block";
+            } else {
+                // If logged in, navigate to the profile page
+                window.location.href = myProfileLink.getAttribute("data-authed-href");
             }
         });
     }
@@ -31,8 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (startCampaignLink) {
         startCampaignLink.addEventListener("click", function (event) {
             if (!isLoggedIn()) {
+                // If not logged in, prevent the default link behavior and show the campaign modal
                 event.preventDefault();
                 if (campaignModal) campaignModal.style.display = "block";
+            } else {
+                // If logged in, navigate to the campaign creation page
+                window.location.href = startCampaignLink.getAttribute("data-authed-href");
             }
         });
     }
@@ -42,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
         closeBtn.addEventListener("click", function () {
             const modalId = this.getAttribute('data-modal');
             const modal = document.getElementById(modalId);
-            if (modal) modal.style.display = "none";
+            if (modal) modal.style.display = "none";  // Close the modal
         });
     });
 
     // Close when clicking outside modal
     window.addEventListener("click", function (event) {
         if (event.target.classList.contains('modal')) {
-            event.target.style.display = "none";
+            event.target.style.display = "none"; // Close modal if clicked outside
         }
     });
 
@@ -58,13 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            // Simulate login
-            localStorage.setItem('authToken', 'example-token-123');
+            // Simulate login (store token)
+            localStorage.setItem('authToken', 'example-token-123'); 
             document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = "none";
+                modal.style.display = "none";  // Close all modals after login
             });
             const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || 'profile.html';
-            window.location.href = redirectUrl;
+            window.location.href = redirectUrl;  // Redirect to profile page or default
         });
     }
 
@@ -74,102 +76,22 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutBtn.addEventListener('click', function () {
             localStorage.removeItem('authToken');
             sessionStorage.removeItem('authToken');
-            window.location.href = 'index.html';
+            window.location.href = 'index.html';  // Redirect to homepage after logout
         });
     }
-});
-// Check authentication state on page load
-document.addEventListener('DOMContentLoaded', function() {
-  checkAuthState();
+
+    // Check authentication state on page load
+    checkAuthState();
 });
 
+// Function to check the authentication state
 function checkAuthState() {
-  const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
-  
-  // Hide all modals if logged in
-  if (token) {
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.style.display = 'none';
-    });
-  }
-}
-
-// Login form handler
-if (document.getElementById('loginForm')) {
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
     
-    // Get form values
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    // Simple validation
-    if (email && password) {
-      // Store token
-      localStorage.setItem('authToken', 'example-token');
-      
-      // Hide all modals
-      document.querySelectorAll('.modal').forEach(modal => {
-        modal.style.display = 'none';
-      });
-      
-      // Redirect
-      const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || 'profile.html';
-      window.location.href = redirectUrl;
-    } else {
-      alert('Please enter both email and password');
+    // Hide all modals if logged in
+    if (token) {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';  // Hide modals if logged in
+        });
     }
-  });
-}
-
-// Modal functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize modals
-  initModals();
-  checkAuthState();
-});
-
-function initModals() {
-  // Profile link
-  document.getElementById('myProfileLink')?.addEventListener('click', function(e) {
-    if (!isLoggedIn()) {
-      e.preventDefault();
-      document.getElementById('profileModal').style.display = 'block';
-    }
-  });
-
-  // Campaign link
-  document.getElementById('startCampaignLink')?.addEventListener('click', function(e) {
-    if (!isLoggedIn()) {
-      e.preventDefault();
-      document.getElementById('campaignModal').style.display = 'block';
-    }
-  });
-
-  // Close buttons
-  document.querySelectorAll('.close').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const modalId = this.getAttribute('data-modal');
-      document.getElementById(modalId).style.display = 'none';
-    });
-  });
-
-  // Close when clicking outside
-  window.addEventListener('click', function(e) {
-    if (e.target.classList.contains('modal')) {
-      e.target.style.display = 'none';
-    }
-  });
-}
-
-function isLoggedIn() {
-  return !!(localStorage.getItem('authToken') || sessionStorage.getItem('authToken'));
-}
-
-function checkAuthState() {
-  if (isLoggedIn()) {
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.style.display = 'none';
-    });
-  }
 }

@@ -24,7 +24,6 @@ const profileImageDir = path.join(__dirname, "uploads", "profile-images");
 if (!fs.existsSync(profileImageDir)) {
   fs.mkdirSync(profileImageDir, { recursive: true });
 }
-
 const documentDir = path.join(__dirname, "uploads", "documents");
 if (!fs.existsSync(documentDir)) {
   fs.mkdirSync(documentDir, { recursive: true });
@@ -39,7 +38,6 @@ const documentStorage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname);
   }
 });
-
 const upload = multer({ storage: documentStorage }).fields([
   { name: 'image', maxCount: 1 },
   { name: 'documents', maxCount: 10 }
@@ -73,6 +71,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Routes
 
 // Profile page - show user data
 app.get("/profile", isAuthenticated, (req, res) => {
@@ -133,112 +133,6 @@ app.post('/create-campaign', isAuthenticated, upload, (req, res) => {
       res.redirect('/profile');
     });
   });
-});
-
-// Signup page
-app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'signup.html'));
-});
-
-// Signup POST handler
-app.post('/signup', (req, res) => {
-  const { username, email, password, confirmPassword } = req.body;
-
-  if (password !== confirmPassword) {
-    return res.status(400).send('Passwords do not match');
-  }
-
-  const checkEmailQuery = 'SELECT * FROM users WHERE email = ?';
-  db.query(checkEmailQuery, [email], (err, result) => {
-    if (err) {
-      console.error('Error checking email:', err);
-      return res.status(500).send('Internal server error');
-    }
-
-    if (result.length > 0) {
-      return res.status(400).send('Email already exists');
-    }
-
-    const insertQuery = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
-    db.query(insertQuery, [username, email, password], (err, result) => {
-      if (err) {
-        console.error('Error inserting user:', err);
-        return res.status(500).send('Error saving user');
-      }
-
-      res.send('<script>alert("Account created successfully! Redirecting to login..."); window.location.href = "/login";</script>');
-    });
-  });
-});
-
-// Login page
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
-
-// Login POST handler
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  db.query('SELECT * FROM admins WHERE email = ? AND password = ?', [email, password], (err, result) => {
-    if (err) {
-      console.error('Error checking admin:', err);
-      return res.status(500).send('Internal server error');
-    }
-
-    if (result.length > 0) {
-      req.session.user_type = 'admin';
-      req.session.email = email;
-      req.session.username = result[0].username; // Ensure username is also saved in session
-      return res.redirect('/dashboard');
-    }
-
-    // Check user next
-    db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, result) => {
-      if (err) {
-        console.error('Error checking user:', err);
-        return res.status(500).send('Internal server error');
-      }
-
-      if (result.length > 0) {
-        req.session.user_type = 'user';  // Set user_type to 'user' after successful login
-        req.session.email = email;
-        req.session.username = result[0].username;  // Use 'name' field for username
-        return res.redirect('/profile'); // Redirect to user profile page
-      }
-
-      req.session.login_error = 'Invalid email or password';
-      return res.redirect('/login');
-    });
-  });
-});
-
-// /check-session route
-app.get('/check-session', (req, res) => {
-  if (req.session.user_type) {
-    res.json({ loggedIn: true });
-  } else {
-    res.json({ loggedIn: false });
-  }
-});
-
-// /logout route
-app.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error('Error destroying session:', err);
-    }
-    res.redirect('/login');
-  });
-});
-
-// Admin dashboard
-app.get('/dashboard', (req, res) => {
-  if (req.session.user_type === 'admin') {
-    res.send('Welcome to Admin Dashboard');
-  } else {
-    res.redirect('/login');
-  }
 });
 
 // Setup session management
@@ -323,7 +217,6 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  // Check the admin credentials first
   db.query('SELECT * FROM admins WHERE email = ? AND password = ?', [email, password], (err, result) => {
     if (err) {
       console.error('Error checking admin:', err);
@@ -334,10 +227,10 @@ app.post('/login', (req, res) => {
       req.session.user_type = 'admin';
       req.session.email = email;
       req.session.username = result[0].username; // Ensure username is also saved in session
-      return res.redirect('/dashboard'); // Redirect to admin dashboard
+      return res.redirect('/dashboard');
     }
 
-    // Check user credentials next
+    // Check user next
     db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, result) => {
       if (err) {
         console.error('Error checking user:', err);
@@ -347,7 +240,7 @@ app.post('/login', (req, res) => {
       if (result.length > 0) {
         req.session.user_type = 'user';  // Set user_type to 'user' after successful login
         req.session.email = email;
-        req.session.username = result[0].username; // Use 'name' field for username
+        req.session.username = result[0].username;  // Use 'name' field for username
         console.log("Session initialized for user:", req.session); // Debugging line
         return res.redirect('/profile'); // Redirect to user profile page
       }
@@ -359,16 +252,14 @@ app.post('/login', (req, res) => {
 });
 
 
-
 // /check-session route
 app.get('/check-session', (req, res) => {
   if (req.session.user_type) {
-    res.json({ loggedIn: true }); // User is logged in
+    res.json({ loggedIn: true });
   } else {
-    res.json({ loggedIn: false }); // User is not logged in
+    res.json({ loggedIn: false });
   }
 });
-
 
 // /logout route
 app.get('/logout', (req, res) => {
@@ -387,91 +278,6 @@ app.get('/dashboard', (req, res) => {
   } else {
     res.redirect('/login');
   }
-});
-
-
-
-
-// Create campaign route with file uploads
-app.post('/create-campaign', upload, (req, res) => {
-  const { title, description, category, goal, duration } = req.body;
-  const imageFile = req.files.image ? req.files.image[0] : null;
-
-  if (!imageFile) {
-    return res.status(400).send('Cover image is required');
-  }
-
-  const checkQuery = 'SELECT * FROM campaigns WHERE title = ?';
-  db.query(checkQuery, [title], (err, results) => {
-    if (err) {
-      console.error('Error checking for duplicates:', err);
-      return res.status(500).send('Error checking for duplicates');
-    }
-
-    if (results.length > 0) {
-      return res.status(400).send('A campaign with this title already exists');
-    }
-
-    const query = `INSERT INTO campaigns (title, description, category, goal, duration, cover_image) VALUES (?, ?, ?, ?, ?, ?)`;
-    db.query(query, [title, description, category, goal, duration, imageFile.filename], (err, result) => {
-      if (err) {
-        console.error('DB Insert Error:', err);
-        return res.status(500).send('Error saving campaign');
-      }
-
-      const campaignId = result.insertId;
-
-      if (req.files.documents && req.files.documents.length > 0) {
-        req.files.documents.forEach((file) => {
-          const fileQuery = `INSERT INTO campaign_files (campaign_id, file_name, file_path, file_size) VALUES (?, ?, ?, ?)`;
-          db.query(fileQuery, [
-            campaignId,
-            file.filename,
-            path.join('uploads', 'documents', file.filename),
-            file.size
-          ], (err) => {
-            if (err) console.error('Error saving document:', err);
-          });
-        });
-      }
-
-      res.send('Campaign created successfully');
-    });
-  });
-});
-
-// Get all campaigns
-app.get('/campaigns', (req, res) => {
-  db.query('SELECT * FROM campaigns', (err, campaigns) => {
-    if (err) return res.status(500).send('Error fetching campaigns');
-
-    let completed = 0;
-
-    campaigns.forEach((campaign, index) => {
-      db.query('SELECT * FROM campaign_files WHERE campaign_id = ?', [campaign.id], (err, files) => {
-        if (!err) {
-          campaigns[index].documents = files.map(file => ({
-            fileName: file.file_name,
-            filePath: `/uploads/documents/${file.file_name}`,
-          }));
-        }
-        completed++;
-        if (completed === campaigns.length) {
-          res.json(campaigns);
-        }
-      });
-    });
-  });
-});
-
-// Get campaign by id
-app.get('/campaign/:id', (req, res) => {
-  const id = req.params.id;
-  db.query('SELECT * FROM campaigns WHERE id = ?', [id], (err, result) => {
-    if (err) return res.status(500).send('Error fetching campaign');
-    if (result.length === 0) return res.status(404).send('Not found');
-    res.json(result[0]);
-  });
 });
 
 // Start server

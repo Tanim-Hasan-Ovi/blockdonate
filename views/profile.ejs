@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/campaign.css">
 </head>
 <body>
     <header class="main-header">
@@ -34,19 +35,41 @@
         <main class="main-content">
             <div class="profile-card">
                 <div class="profile-info">
-                        <img src="<%= user.profile_image || '/images/default-avatar.png' %>" alt="Profile" class="profile-avatar" id="profile-image">
+                    <img src="<%= user.profile_image || '/images/default-avatar.png' %>" alt="Profile" class="profile-avatar" id="profile-image">
                     <div class="profile-details">
                         <h2 id="profile-name"><%= user.username %></h2>
                         <p><i class="fas fa-envelope"></i> <span id="profile-email"><%= user.email %></span></p>
                         <p><i class="fas fa-phone"></i> <span id="profile-phone"><%= user.phone %></span></p>
                         <p><i class="fas fa-map-marker-alt"></i> <span id="profile-address"><%= user.address %></span></p>
                         <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
-
+                        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+<div class="your-campaigns-header">
+    <h2>Your Campaigns</h2>
+    <ul class="campaign-list">
+        <% campaigns.forEach(function(campaign) { %>
+            <li>
+                <h3><%= campaign.title %></h3>
+                <p><%= campaign.description %></p>
+                <p class="campaign-goal">Goal: <%= campaign.goal %></p>
+                <p class="campaign-duration">Duration: <%= campaign.duration %> days</p>
+                <div class="campaign-actions">
+                    <button class="btn-view-campaign">View Campaign</button>
+                </div>
+            </li>
+        <% }) %>
+    </ul>
+</div>
+
+
+
+
+
 
     <!-- Modal for Profile Editing -->
     <div id="edit-profile-modal" class="modal">
@@ -73,31 +96,32 @@
 <script>
 // On profile page (profile.ejs)
 document.addEventListener('DOMContentLoaded', function() {
-    if (!isLoggedIn()) {
-        // Redirect to login if not logged in
-        window.location.href = "login.html";
-    }
+    fetch('/check-session')  // Check if the user is logged in using session
+        .then(response => response.json())
+        .then(data => {
+            if (!data.loggedIn) {
+                window.location.href = "/login"; // Redirect to login if not logged in
+            }
+        });
 });
 
-// Function to check login status
-function isLoggedIn() {
-    const loggedIn = localStorage.getItem('userLoggedIn');
-    return loggedIn === 'true'; // Check if userLoggedIn is true
-}
-
-// Example logout functionality (profile.ejs or similar)
+// Logout functionality (Server-side session check)
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', function() {
-        localStorage.removeItem('userLoggedIn'); // Remove login status
-        window.location.href = "index.html"; // Redirect to homepage or login page
+        // Make a request to the server to destroy the session
+        fetch('/logout', { method: 'GET' })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/login"; // Redirect to login page after logging out
+                }
+            })
+            .catch(error => console.error('Error during logout:', error));
     });
 }
+</script>
 
-</script>
-<script>
-  document.getElementById('logoutBtn').addEventListener('click', handleLogout);
-</script>
-    <script src="js/profile.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/campaign.js"></script>
 </body>
 </html>
