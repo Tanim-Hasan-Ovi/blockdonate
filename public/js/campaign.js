@@ -67,8 +67,9 @@ function renderPage(page) {
                     </div>
                 </div>
                 <div class="campaign-actions">
-                    <button class="btn-donate">Donate Now</button>
-                </div>
+    <a href="wallet.html" class="btn-donate">Donate Now</a>
+</div>
+
             </div>
 
             <!-- Document container (hidden by default) -->
