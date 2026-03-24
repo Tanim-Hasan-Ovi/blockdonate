@@ -1,57 +1,44 @@
-BlockDonate
+# 🛡️ BlockDonate - Decentralized Donation Platform
+### 🎓 Capstone Project | UITS
 
-BlockDonate is a blockchain-based decentralized donation platform developed to bring transparency, security, and accountability to charitable giving in Bangladesh. It enables donors to directly track their contributions and ensures organizations maintain full transparency about fund usage.
+**BlockDonate** is a blockchain-based decentralized donation platform designed to bring transparency, security, and accountability to charitable giving. This project addresses mismanagement and corruption in the donation process by ensuring every transaction is traceable and immutable.
 
-🌐 Project Overview
+---
 
-In Bangladesh, charitable donations are often undermined by corruption, mismanagement, and a lack of transparency. BlockDonate addresses these issues by leveraging blockchain technology to create an immutable, traceable system for donations. Donors can see exactly where their money goes, and organizations can build trust through verifiable records.
+## 🚀 Live Demo (Frontend)
+Experience the user interface here:  
+👉 [https://tanim-hasan-ovi.github.io/blockdonate/](https://tanim-hasan-ovi.github.io/blockdonate/)
 
-🎯 Key Features
-	•	🔐 Secure Blockchain Ledger – All donation data is immutably recorded on the blockchain.
-	•	👤 Donor & Organization Profiles – Customized dashboards for activity tracking.
-	•	📚 Cause Catalog – Verified fundraising campaigns categorized for easy browsing.
-	•	📊 Real-Time Donation Tracking – Donors can track their donations end-to-end.
-	•	🔁 Recurring Donations – Automate monthly or weekly contributions.
-	•	💻 Responsive Design – Fully functional across desktop and mobile devices.
+---
 
-🛠️ Tech Stack
-	•	Frontend: HTML, CSS, SCSS, JavaScript
-	•	Backend: PHP
-	•	Blockchain: Ethereum (via Ganache for testing)
-	•	Database: MySQL
-	•	Integration: Web3.js, MetaMask
+## 🎨 My Contribution (Lead Developer)
+As the **Lead Developer** for this Capstone project, I was responsible for the end-to-end development of the user interface and the core database architecture, ensuring a seamless experience for both donors and organizations.
 
- blockdonate/
-├── contracts/          # Solidity smart contracts
-├── frontend/           # HTML, CSS, JS, and SCSS
-├── backend/            # PHP backend logic and APIs
-├── database/           # SQL schema and connection config
-├── docs/               # Documentation, reports, presentation slides
-└── README.md
+**Key Highlights of My Work:**
+* **Dashboard & UI Design:** Designed and built intuitive, data-driven dashboards for real-time tracking using HTML5, CSS3/SCSS, and JavaScript.
+* **Database Architecture:** Architected and implemented the MySQL database schema to manage users, campaigns, and transaction logs efficiently.
+* **Blockchain Integration UI:** Developed the interface for connecting MetaMask wallets and interacting with the blockchain via Web3.js.
+* **Modern & Responsive UX:** Ensured a clean, professional aesthetic and optimized the application for perfect performance across mobile, tablet, and desktop screens.
+---
 
-🚀 Getting Started
+## 🛠️ Tech Stack
+* **Frontend:** HTML5, CSS3/SCSS, JavaScript (ES6+), EJS
+* **Backend:** Node.js, PHP
+* **Blockchain:** Ethereum (Tested with Ganache)
+* **Database:** MySQL
+* **Integration:** Web3.js, MetaMask
 
-Requirements
-	•	Node.js & npm
-	•	PHP 7.4 or higher
-	•	MySQL server
-	•	Ganache (for local Ethereum blockchain)
-	•	MetaMask browser extension
+---
 
-Setup Instructions
-	1.	Clone the repository:
-👨‍💻 Team Members
-	•	Tanim Hasan Ovi
-	•	Ifftekher Hossain Mrida
-	•	Md Bappy Mia
-	•	Md Safayet Hossain
+## 👨‍💻 Team Members & Roles
 
-Supervisor:
-👩‍🏫 Ms. Fatema Tuj Tarannom Esty, Department of Computer Science and Engineering,
+* **[Tanim Hasan Ovi](https://github.com/Tanim-Hasan-Ovi)** — **Lead Developer (Frontend & Database)** *Designed the entire UI/UX, developed frontend logic, and architected the MySQL database schema.*
+
+* **Ifftekher Hossain Mrida** — **Backend Developer** *Handled server-side routing, Node.js logic, and API integration.*
+
+* **Md Bappy** — **System Analyst & QA** *Focused on requirement analysis, system testing, and identifying bugs.*
+
+* **Safayet Ahmed** — **Documentation & Research** *Managed the Capstone project report, SRS documentation, and blockchain implementation research.*
+
+**Supervised By:** 👩‍🏫 **Ms. Fatema Tuj Tarannom Esty** Department of Computer Science and Engineering,  
 University of Information Technology and Sciences (UITS)
-
-📄 License
-
-This project is licensed under the MIT License.
-
- 
