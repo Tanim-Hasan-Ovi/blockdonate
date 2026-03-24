@@ -1,17 +1,17 @@
-# 🛡️ BlockDonate - Decentralized Donation Platform
-### 🎓 Capstone Project | UITS
+# BlockDonate - Decentralized Donation Platform
+### Capstone Project | UITS
 
 **BlockDonate** is a blockchain-based decentralized donation platform designed to bring transparency, security, and accountability to charitable giving. This project addresses mismanagement and corruption in the donation process by ensuring every transaction is traceable and immutable.
 
 ---
 
-## 🚀 Live Demo (Frontend)
+## Live Demo (Frontend)
 Experience the user interface here:  
 👉 [https://tanim-hasan-ovi.github.io/blockdonate/](https://tanim-hasan-ovi.github.io/blockdonate/)
 
 ---
 
-## 🎨 My Contribution (Lead Developer)
+## My Contribution (Lead Developer)
 As the **Lead Developer** for this Capstone project, I was responsible for the end-to-end development of the user interface and the core database architecture, ensuring a seamless experience for both donors and organizations.
 
 **Key Highlights of My Work:**
@@ -21,7 +21,7 @@ As the **Lead Developer** for this Capstone project, I was responsible for the e
 * **Modern & Responsive UX:** Ensured a clean, professional aesthetic and optimized the application for perfect performance across mobile, tablet, and desktop screens.
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 * **Frontend:** HTML5, CSS3/SCSS, JavaScript (ES6+), EJS
 * **Backend:** Node.js, PHP
 * **Blockchain:** Ethereum (Tested with Ganache)
@@ -40,5 +40,5 @@ As the **Lead Developer** for this Capstone project, I was responsible for the e
 
 * **Safayet Ahmed** — **Documentation & Research** *Managed the Capstone project report, SRS documentation, and blockchain implementation research.*
 
-**Supervised By:** 👩‍🏫 **Ms. Fatema Tuj Tarannom Esty** Department of Computer Science and Engineering,  
+**Supervised By:** **Ms. Fatema Tuj Tarannom Esty** Department of Computer Science and Engineering,  
 University of Information Technology and Sciences (UITS)
